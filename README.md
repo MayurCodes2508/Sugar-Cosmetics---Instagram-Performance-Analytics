@@ -6,6 +6,8 @@ End-to-end DBT analytics project demonstrating layered modeling (raw, staging, i
 
 ## Project Overview
 
+This project answers how weekly revenue is trending, how stable it is over time, and whether growth patterns are consistent or volatile.
+
 This project models E-commerce order data using dbt, following a
 staging → intermediate → marts architecture. The focus is on building
 trustworthy metrics and enforcing correctness through comprehensive testing.
@@ -54,7 +56,7 @@ Total tests: **~60**
 
 ---
 
-## My Understanding of dbt Models & Tests
+## Modeling & Testing Philosophy
 
 ### Models
 - **Staging models** Clean and standardize raw data.
