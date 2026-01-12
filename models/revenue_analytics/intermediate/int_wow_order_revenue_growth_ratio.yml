@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: int_wow_order_revenue_growth_ratio
+    description: >
+      Week-over-week revenue growth stored as a ratio.
+      Formula:
+      (current_week_revenue - previous_week_revenue)
+      / previous_week_revenue.
+      Example: 0.25 = 25% growth.
+
+    columns:
+      - name: week_start
+        tests:
+          - not_null
+          - unique
+
+      - name: weekly_revenue
+        tests:
+          - not_null
+          

@@ -37,7 +37,7 @@ Total models: **9**
 
 ## Tests
 
-Total tests: **~60**
+Total tests: **~31**
 
 ### Schema & Integrity Tests
 - not_null
@@ -46,7 +46,7 @@ Total tests: **~60**
 - non negative numeric checks
 
 ### Mathematical Correctness Tests
-- formula correctness tests using `IS DISTINCT FROM`
+- formula correctness tests
 - zero denominator handling for ratio metrics
 
 ### Business Logic Tests

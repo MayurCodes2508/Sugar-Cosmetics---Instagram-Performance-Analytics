@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: int_weekly_order_revenue
+    description: >
+      calculating the total weekly revenue.
+      Used SUM(cleaned_amount).
+    columns:
+    - name: week_start
+      tests:
+        - not_null
+        - unique
+
+    - name: weekly_revenue
+      description: >
+        Weekly revenue should be or more than 0
+      tests:
+        - not_null

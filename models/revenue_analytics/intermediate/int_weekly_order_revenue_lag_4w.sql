@@ -1,0 +1,6 @@
+{{ config(materialized = 'table') }}
+
+SELECT week_start,
+	   weekly_revenue,
+	   LAG(weekly_revenue, 4) OVER(ORDER BY week_start) AS prev_week4_order_revenue
+FROM {{ ref('int_weekly_order_revenue') }}

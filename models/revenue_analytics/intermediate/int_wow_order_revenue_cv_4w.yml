@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: int_wow_order_revenue_cv_4w
+    description: >
+      Calculating CV (Coefficient of Variation) of revenue previous 4 weeks.
+      Used CV = Standard DEV / Rolling AVG.
+
+    columns:
+      - name: week_start
+        tests:
+          - not_null
+          - unique
+
+      - name: weekly_revenue
+        tests:
+          - not_null

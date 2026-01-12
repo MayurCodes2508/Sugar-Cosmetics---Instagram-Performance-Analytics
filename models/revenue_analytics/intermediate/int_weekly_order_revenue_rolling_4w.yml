@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: int_weekly_order_revenue_rolling_4w
+    description: >
+      Calculating the rolling avg and standard deviation of previous 4 weeks total weekly revenue.
+      Used AVG(weekly_revenue) OVER(PARTITION BY order_id ORDER BY week_start ROWS BETWEEN 4 PRECEDING AND 1 PRECEDING).
+      Used STDDEV_POP(weekly_revenue) OVER(PARTITION BY order_id ORDER BY week_start ROWS BETWEEN 4 PRECEDING AND 1 PRECEDING).
+    columns:
+      - name: week_start
+        tests:
+          - not_null
+          - unique
+
+      - name: weekly_revenue
+        tests:
+          - not_null
+               

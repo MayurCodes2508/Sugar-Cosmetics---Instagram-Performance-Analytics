@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: int_weekly_order_revenue_lag_4w
+    description: >
+      Calculating the total weekly revenue of previous 4th week.
+      Used lag(weekly_revenue, 4).
+    columns:
+      - name: week_start
+        tests:
+          - not_null
+          - unique
+
+      - name: weekly_revenue
+        tests:
+          - not_null

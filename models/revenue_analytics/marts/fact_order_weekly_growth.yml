@@ -1,0 +1,28 @@
+version: 2
+
+models:
+  - name: fact_order_weekly_growth
+    description: >
+      Categorizing GP with values such as Improving, Declining, Stable.
+      Used GP >, < and = 0.
+
+    columns:
+      - name: week_start
+        tests:
+          - not_null   
+          - unique 
+
+      - name: weekly_revenue
+        tests:
+          - not_null 
+
+      - name: growth_ratio_flag
+        description: >
+          GP must be either of these values.
+        tests:
+          - accepted_values:
+              values:
+                - Insufficient Data
+                - Improving
+                - Declining
+                - Stable
