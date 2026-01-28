@@ -1,0 +1,65 @@
+version: 2
+
+models:
+  - name: stg_instagram_posts
+
+    columns:
+      - name: post_date
+        tests:
+          - not_null 
+
+      - name: impressions
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: ">= 0"
+
+      - name: reach
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: ">= 0"  
+
+      - name: likes
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: ">= 0"  
+
+      - name: comments
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: ">= 0"   
+
+      - name: shares
+        tests:
+          - not_null 
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: ">= 0"  
+
+      - name: saves
+        tests:
+          - not_null 
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: ">= 0"  
+
+      - name: profile_visits
+        tests:
+          - not_null 
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: ">= 0"  
+
+      - name: follows
+        tests:
+          - not_null 
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: ">= 0"  

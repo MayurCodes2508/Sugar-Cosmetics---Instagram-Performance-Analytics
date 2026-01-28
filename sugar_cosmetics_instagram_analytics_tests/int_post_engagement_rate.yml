@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: int_post_engagement_rate
+
+    columns:
+      - name: post_engagement_rate
+        tests:
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: ">= 0 AND post_engagement_rate <= 1"

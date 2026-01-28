@@ -1,86 +1,161 @@
-# ecommerce-orders-analytics
+# 📊 Sugar Cosmetics – Instagram Performance Analytics
 
-End-to-end DBT analytics project demonstrating layered modeling (raw, staging, intermediate and marts), data quality testing, and business metric validation.
+This project analyzes the performance of Sugar Cosmetics Instagram account using real-world social media data.  
+The goal is to understand how different types of content perform and to derive insights that can help improve social media strategy.
 
----
-
-## Project Overview
-
-This project answers how weekly revenue is trending, how stable it is over time, and whether growth patterns are consistent or volatile.
-
-This project models E-commerce order data using dbt, following a
-staging → intermediate → marts architecture. The focus is on building
-trustworthy metrics and enforcing correctness through comprehensive testing.
+The project follows an Analytics Engineering approach using:
+- PostgreSQL as the Data Warehouse
+- dbt for data modeling and testing
+- Power BI for visualization and reporting
 
 ---
 
-## Models
+## 📁 Dataset
 
-Total models: **17**
+The raw dataset contains post-level Instagram data with the following columns:
 
-### Staging (1)
-- `staging_orders`
+- Post Date  
+- Post Type (Image, Video etc)  
+- Campaign Type  
+- Hashtags  
+- Audience Emotion  
+- Engagement Source  
+- Impressions  
+- Reach  
+- Likes  
+- Comments  
+- Shares  
+- Saves  
+- Profile Visits  
+- Follows  
 
-### Intermediate (12)
-- `int_weekly_order_revenue`
-- `int_weekly_order_revenue_lag_1w`
-- `int_weekly_order_revenue_lag_4w`
-- `int_weekly_order_revenue_rolling_4w`
-- `int_wow_order_revenue_growth_ratio`
-- `int_wow_order_revenue_cv_4w`
-- `int_weekly_active_customers`
-- `int_weekly_active_customers_lag`
-- `int_weekly_customers_churn_flag`
-- `int_weekly_customers_churned_customers`
-- `int_weekly_customers_retain_flag`
-- `int_weekly_customers_retained_customers`
-
-### Marts (4)
-- `fact_order_weekly_growth`
-- `fact_order_revenue_consistency`
-- `fact_weekly_customers_churn_rate`
-- `fact_weekly_customers_retain_rate`
+Each row represents one Instagram post.
 
 ---
 
-## Tests
+## 🧱 Data Modeling Structure (dbt)
 
-Total tests: **~42**
+The data pipeline is organized into three layers as per dbt layering:
 
-### Schema & Integrity Tests
-- not_null
-- unique
-- accepted_values
-- non negative numeric checks
+### 1. Staging Layer (`stg_`)
 
-### Mathematical Correctness Tests
-- formula correctness tests
-- zero denominator handling tests 
-- expression_is_true <= tests
+Purpose:
+- Clean column names
+- Cast correct data types
 
-### Business Logic Tests
-- flag correctness tests
-- WOW(week_over_week) classification tests
+Tables:
+- `stg_instagram_posts`
+
+Tests applied:
+- Not null checks on important numeric and date columns
 
 ---
 
-## Modeling & Testing Philosophy
+### 2. Intermediate Layer (`int_`)
 
-### Models
-- **Staging models** Clean and standardize raw data.
-- **Intermediate models** Derive reusable metrics and calculations.
-- **Mart models** Showcase business ready facts and flags for analysis.
+Purpose:
+- Create reusable business logic
+- Prepare features for analysis
 
-### Tests
-- dbt testing's outcome is as follows: test pass: no rows are returned, test fail: bad rows are returned
-- We intentionally try to fail the test,
-  Why? because failing test returns bad rows which allows us to fix the errors.
-- We sometimes write conditions intentionally which are anti-queries to return bad rows.
+Tables:
+- `int_post_engagement_rate` → calculates engagement rate per post
+- `int_hashtag_array_breakdown` → explodes multiple hashtags into separate rows
+
+This layer is useful for:
+- Feature engineering
+- Reuse in multiple fact models
 
 ---
 
-## Documentation
-- dbt docs are generated to visualize lineage and model dependencies.
-- Column-level tests and descriptions are visible in the docs UI.
+### 3. Fact Layer (`fact_`)
+
+Purpose:
+- Final business metrics used in dashboards
+
+Tables:
+- `fact_kpi_overview`
+- `fact_monthly_posting_trend`
+- `fact_ranking_posts_by_likes`
+- `fact_post_type_performance_comparison`
+- `fact_dow_analysis_by_engagement`
+- `fact_engagement_funnel`
+- `fact_hashtags_by_top_used`
+- `fact_ranking_posts_by_post_engagement_rate`
+
+These fact tables are directly connected to Power BI.
+
+---
+
+## 📊 Metrics Defined
+
+Some key metrics used in the project:
+
+- Total Posts
+- Total Likes
+- Total Comments
+- Total Reach
+- Average Engagement Rate per Post  
+  `(likes + comments + shares + saves) / reach`
+
+- Monthly Posting Frequency
+
+- Top 10 Posts by Likes
+
+- Top 10 Posts by Engagement Rate
+
+- Performance by Post Type
+
+- Best Day of Week to Post
+
+- Engagement Funnel:
+  - Impressions → Reach → Likes → Comments → Shares → Saves
+
+- Hashtag Performance:
+  - Post Count
+  - Average Engagement Rate
+  - Average Reach
+
+---
+
+## 🧪 Data Quality & Testing
+
+Data quality is enforced using dbt tests such as:
+
+- `not_null` on key metrics
+- `expression_is_true` for:
+  - non-negative values
+  - engagement rate between 0 and 1
+
+These tests help ensure that dashboards are built on trustworthy data.
+
+---
+
+## 📈 Dashboard (Power BI)
+
+Power BI is used only for:
+- Visualization
+- Filtering
+- Business presentation
+
+All business logic and metrics are calculated in dbt, not in Power BI.
+
+Dashboard pages include:
+1. Overview KPIs
+2. Content Performance Analysis
+3. Engagement & Hashtag Analysis
+
+Interactive slicers:
+- Post Type
+- Month
+- Hashtag
+
+---
+
+## 🚀 Tools Used
+
+- PostgreSQL
+- dbt Core
+- Power BI
+- SQL
 
 ---

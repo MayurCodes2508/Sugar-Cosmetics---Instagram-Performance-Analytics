@@ -1,12 +1,17 @@
-name: ecommerce_orders_analytics
+name: sugar_cosmetics_instagram_analytics
 version: '1.0'
 config-version: 2
 
-profile: ecommerce_orders_analytics
+profile: sugar_cosmetics_instagram_analytics
 
-model-paths: ["models"]
-test-paths: ["tests"]
-seed-paths: ["data"]
+model-paths:
+  - sugar_cosmetics_instagram_analytics_model
+
+test-paths:
+  - sugar_cosmetics_instagram_analytics_tests
+
+seed-paths: 
+  - sugar_cosmetics_instagram_analytics_seed
 
 seeds:
-  +schema: raw
+    +schema: raw_instagram

@@ -1,0 +1,14 @@
+
+    
+    
+    
+    create table "sugar_cosmetics_instagram_analytics"."public_raw_instagram"."orders" ("order_id" integer,"customer_id" integer,"order_date" date,"order_status" text,"order_amount" float8,"payment_method" text)
+  ;
+    -- dbt seed --
+    
+          insert into "sugar_cosmetics_instagram_analytics"."public_raw_instagram"."orders" ("order_id", "customer_id", "order_date", "order_status", "order_amount", "payment_method") values
+          (%s,%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s,%s)
+      
+
+;
+  

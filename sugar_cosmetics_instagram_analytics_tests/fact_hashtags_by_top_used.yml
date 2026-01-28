@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: fact_hashtags_by_top_used
+
+    columns:
+      - name: avg_engagement_rate
+        tests:
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: ">= 0 AND avg_engagement_rate <= 1"

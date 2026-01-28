@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: fact_dow_analysis_by_engagement
+
+    columns:
+      - name: avg_engagement
+        tests:
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: ">=0"
