@@ -1,11 +1,11 @@
 # 📊 Sugar Cosmetics – Instagram Performance Analytics
 
-This project analyzes the performance of Sugar Cosmetics Instagram account using real-world social media data.  
+This project analyses the performance of Sugar Cosmetics Instagram account using real-world social media data.  
 The goal is to understand how different types of content perform and to derive insights that can help improve social media strategy.
 
 The project follows an Analytics Engineering approach using:
 - PostgreSQL as the Data Warehouse
-- dbt for data modeling and testing
+- dbt for data modelling and testing
 - Power BI for visualization and reporting
 
 ---
